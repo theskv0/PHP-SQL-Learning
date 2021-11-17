@@ -166,3 +166,38 @@ SELECT name FROM student UNION SELECT name FROM employee; -- UNION is DISTINCT a
 
 SELECT name FROM user INTERSECT SELECT name FROM student; -- those name which matches in both tables
 SELECT name FROM user EXCEPT SELECT name FROM student; -- those name which matches only in first query
+
+
+-- Transaction --
+
+START TRANSACTION;  
+  
+SELECT * FROM Orders;  
+  
+INSERT INTO Orders(order_id, prod_name, order_num, order_date)   
+VALUES (6, 'Printer', 5654, '2020-01-10');  
+  
+SAVEPOINT my_savepoint;  
+  
+INSERT INTO Orders(order_id, prod_name, order_num, order_date)   
+VALUES (7, 'Ink', 5894, '2020-03-10');  
+  
+ROLLBACK TO SAVEPOINT my_savepoint;  
+  
+INSERT INTO Orders(order_id, prod_name, order_num, order_date)   
+VALUES (8, 'Speaker', 6065, '2020-02-18');  
+  
+COMMIT;  
+
+
+-- Differences between the SQL Server DELETE and TRUNCATE Commands
+-- 1. Truncate reseeds identity values, whereas delete doesn't.
+-- 2. Truncate removes all records and doesn't fire triggers.
+-- 3. Truncate is faster compared to delete as it makes less use of the transaction log.
+-- 4. Truncate is not possible when a table is referenced by a Foreign Key or tables are used in replication or with indexed views.
+-- 5. Truncate runs without where.
+-- 6. Truncate can't be rollbacked.
+-- 7. DELETE deletes records one by one and makes an entry for each and every deletion in the transaction log, whereas TRUNCATE de-allocates pages and makes an entry for de-allocation of pages in the transaction log
+
+-- Triger : Trigger is a special type of stored procedure that is invoked automatically in response to an event. Each trigger is associated with a table, which is activated on any DML statement such as INSERT, UPDATE, or DELETE.
+
