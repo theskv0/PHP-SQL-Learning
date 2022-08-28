@@ -122,6 +122,7 @@ error_reporting(E_ALL);
 // system() is for executing a system command and immediately displaying the output - presumably text.
 // passthru() is for executing a system command which you wish the raw return from - presumably something binary.
 
+//////////// Singleton Design Patern /////////////
 // Singleton is a creational design pattern, which ensures that only one object of its kind exists and provides 
 // a single point of access to it for any other code. You can't just use a class that depends on Singleton in some 
 // other context.
@@ -222,3 +223,5 @@ error_reporting(E_ALL);
 // print( 1 <=> 2);print("<br/>"); // -1
 // print( 2 <=> 1);    // 1
 
+
+////////////// Singalton
